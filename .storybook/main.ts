@@ -11,7 +11,6 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
     '@storybook/addon-links',
     '@storybook/addon-onboarding',
-    '@storybook/preset-create-react-app',
   ],
   framework: {
     name: '@storybook/nextjs',
