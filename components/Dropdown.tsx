@@ -1,57 +1,29 @@
 import { useEffect, useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 
-interface OptionsProperties {
-  postId: number;
-  id: number;
-  name: string;
-  email: string;
-  body: string;
-}
-interface DropdownProperties {
-  options: OptionsProperties[];
-  onUpdateSelected: (v: string[]) => any;
+import { findKeywordIndices } from '@/lib/utils';
+import {
+  DropdownType,
+  DropdownSize,
+  DropdownProperties,
+  OptionsProperties,
+} from '@/types/dropdown.type';
 
-  multiple?: boolean;
-  searchable?: boolean;
-
-  label?: string;
-  type?:
-    | 'primary'
-    | 'secondary'
-    | 'accent'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'error';
-  size?: 'xs' | 'sm' | 'md' | 'lg';
-}
-
+/**
+ * Dropdown component that supports single/multiple selection and searchable options.
+ * @param {DropdownProperties} props - The properties for the Dropdown component.
+ * @returns {React.ReactElement} The rendered Dropdown component.
+ */
 const Dropdown = ({
   label = 'Type to search',
-  type = 'primary',
-  size = 'md',
+  type = DropdownType.Primary,
+  size = DropdownSize.MD,
   searchable = true,
   multiple = true,
   options,
   onUpdateSelected,
 }: DropdownProperties) => {
   const [keyword, setKeyword] = useState<string>('');
-  const findKeywordIndices = (target: string, keyword: string): number[] => {
-    const keywordLower = keyword.toLowerCase();
-    let result: number[] = [];
-
-    const lowerStr = target.toLowerCase();
-
-    let startIndex = lowerStr.indexOf(keywordLower);
-    if (startIndex !== -1) {
-      const endIndex = startIndex + keyword.length;
-      if (endIndex !== -1) result = [startIndex, endIndex];
-      else result = [0, 0];
-    }
-
-    return result;
-  };
 
   const [openDropdown, setOpenDropdown] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);

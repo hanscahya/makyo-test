@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import data from '../mock/data.json';
+import data from '@/mock/data.json';
 import Dropdown from '@/components/Dropdown';
+import { DropdownSize, DropdownType } from '@/types/dropdown.type';
 
 const meta = {
   title: 'Dropdown',
@@ -9,8 +10,8 @@ const meta = {
   parameters: {},
   args: {
     label: 'Select One',
-    type: 'primary',
-    size: 'md',
+    type: DropdownType.Primary,
+    size: DropdownSize.MD,
     options: data,
     multiple: true,
     searchable: true,
@@ -24,16 +25,16 @@ type Story = StoryObj<typeof meta>;
 
 export const SingleSelection: Story = {
   args: {
-    size: 'md',
-    type: 'primary',
+    size: DropdownSize.MD,
+    type: DropdownType.Primary,
     multiple: false,
   },
 };
 
 export const LargeSingleSelection: Story = {
   args: {
-    size: 'lg',
-    type: 'success',
+    size: DropdownSize.LG,
+    type: DropdownType.Success,
     multiple: false,
   },
 };
